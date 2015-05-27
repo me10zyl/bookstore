@@ -9,8 +9,8 @@ public class DBConnection {
 	public Connection getConnection()
 	{
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connection = DriverManager.getConnection("jdbc:sqlserver://127.0.0.1:1433;databaseName=bookstore","sa","sa");
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore?useUnicode=true&characterEncoding=utf8","root","");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

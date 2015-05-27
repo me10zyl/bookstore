@@ -50,7 +50,7 @@ public class FeedBackHandler {
 			int count = 0;
 			if(resultset.next())
 				count = resultset.getInt(1);
-			statement.execute("insert into feedback values ('"+fbb.getName()+"','"+fbb.getSubject()+"','"+fbb.getMsg()+"','"+fbb.getEmail()+"','"+fbb.getIp()+"')");
+			statement.execute("insert into feedback values (null,'"+fbb.getName()+"','"+fbb.getSubject()+"','"+fbb.getMsg()+"','"+fbb.getEmail()+"','"+fbb.getIp()+"')");
 			resultset = statement.executeQuery("select count(*) from feedback");
 			if(resultset.next())
 			{

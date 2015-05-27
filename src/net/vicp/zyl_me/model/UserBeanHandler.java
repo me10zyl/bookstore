@@ -16,7 +16,7 @@ public class UserBeanHandler {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select top 1 * from users where username='"+username+"'");
+			resultset = statement.executeQuery("select * from users where username='"+username+"' limit 1");
 			if(resultset.next())
 			{
 				isExist = true;
@@ -47,8 +47,8 @@ public class UserBeanHandler {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.execute("insert into users values ('"+username+"','"+pwd+"',null,null,null,null,null)");
-			resultset = statement.executeQuery("select top 1 * from users where username='"+username+"' and password_='"+pwd+"'");
+			statement.execute("insert into users values (null,'"+username+"','"+pwd+"',null,null,null,null,null)");
+			resultset = statement.executeQuery("select * from users where username='"+username+"' and password_='"+pwd+"' limit 1");
 			if(resultset.next())
 				isSuccessed = true;
 		} catch (SQLException e) {
@@ -78,7 +78,7 @@ public class UserBeanHandler {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select top 1 password_ from users where username='"+username+"'");
+			resultset = statement.executeQuery("select password_ from users where username='"+username+"' limit 1");
 			if(resultset.next())
 			{
 				if(pwd.equals(resultset.getString(1)))
@@ -114,7 +114,7 @@ public class UserBeanHandler {
 		try{
 			connection = new DBConnection().getConnection();
 		statement = connection.createStatement();
-		resultset = statement.executeQuery("select top 12 * from users order by userid desc");
+		resultset = statement.executeQuery("select * from users order by userid desc limit 12");
 		while(resultset.next())
 		{
 			arr.add(new UserBean(resultset.getLong(1), resultset.getString(2), resultset.getString(3), resultset.getInt(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8)));
@@ -146,7 +146,7 @@ public class UserBeanHandler {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select top 1 * from users where username='"+username+"'");
+			resultset = statement.executeQuery("select * from users where username='"+username+"' limit 1");
 			if(resultset.next())
 			{
 				userBean = new UserBean(resultset.getLong(1), resultset.getString(2), resultset.getString(3), resultset.getInt(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8));
